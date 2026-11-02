@@ -1,4 +1,4 @@
-﻿"""A股资讯中心 - 本地服务：静态页面 + 行情/K线/新闻/公告 数据代理（仅标准库）。
+"""A股资讯中心 - 本地服务：静态页面 + 行情/K线/新闻/公告 数据代理（仅标准库）。
 运行：python server.py  →  http://localhost:8765
 """
 import json, re, time, threading, os, sys
