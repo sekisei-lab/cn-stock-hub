@@ -3,6 +3,7 @@ services:
     name: cn-stock-hub
     runtime: python
     plan: free
+    autoDeploy: true
     region: singapore
     buildCommand: python --version
     startCommand: python server.py
