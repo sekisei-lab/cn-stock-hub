@@ -1,0 +1,11 @@
+﻿services:
+  - type: web
+    name: cn-stock-hub
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: python --version
+    startCommand: python server.py
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
