@@ -1,7 +1,7 @@
 """A股资讯中心 - 本地服务：静态页面 + 行情/K线/新闻/公告 数据代理（仅标准库）。
 运行：python server.py  →  http://localhost:8765
 """
-import json, re, time, threading, os, sys
+import json, re, time, calendar, threading, os, sys
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.request import Request, urlopen
 from urllib.parse import urlparse, parse_qs, quote
@@ -247,7 +247,7 @@ def news_em(num=60):
         title = clean(it.get("title"))
         body = clean(it.get("digest"))
         body = re.sub(r"^【[^】]*】", "", body)
-        ts = int(time.mktime(time.strptime(it["showtime"], "%Y-%m-%d %H:%M:%S")))
+        ts = calendar.timegm(time.strptime(it["showtime"], "%Y-%m-%d %H:%M:%S")) - 8 * 3600  # 东财为北京时间，与服务器时区无关
         c = classify(title, body, "", "东方财富")
         out.append({"id": "e" + it["newsid"], "title": title, "summary": body[:200],
                     "url": it.get("url_w") or it.get("url_unique"), "ts": ts, "channel": "东方财富快讯", **c})
